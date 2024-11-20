@@ -16,4 +16,4 @@ while table <= 10:
         multiplier += 1
 
     print()
-    table += 1
+    
