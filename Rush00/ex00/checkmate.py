@@ -36,7 +36,7 @@ def checkmate(board):
     """
     ตรวจสอบว่ามีตัวหมากใดสามารถโจมตี King ได้หรือไม่
     """
-    # หาตำแหน่ง King
+    
     king_pos = None
     for i, row in enumerate(board):
         for j, cell in enumerate(row):
