@@ -3,10 +3,10 @@ def can_attack(piece, position, king_pos, board):
     ตรวจสอบว่าตัวหมากสามารถโจมตี King ได้หรือไม่
     """
     directions = {
-        'P': [(-1, -1), (-1, 1)],  # Pawn โจมตีเฉียงซ้ายบนและขวาบน
-        'B': [(-1, -1), (-1, 1), (1, -1), (1, 1)],  # Bishop โจมตีแนวทแยง
-        'R': [(0, -1), (0, 1), (-1, 0), (1, 0)],  # Rook โจมตีแนวตั้งและแนวนอน
-        'Q': [(-1, -1), (-1, 1), (1, -1), (1, 1), (0, -1), (0, 1), (-1, 0), (1, 0)]  # Queen รวม Bishop และ Rook
+        'P': [(-1, -1), (-1, 1)],  
+        'B': [(-1, -1), (-1, 1), (1, -1), (1, 1)],  
+        'R': [(0, -1), (0, 1), (-1, 0), (1, 0)],  
+        'Q': [(-1, -1), (-1, 1), (1, -1), (1, 1), (0, -1), (0, 1), (-1, 0), (1, 0)]  
     }
 
     if piece not in directions:
@@ -14,14 +14,14 @@ def can_attack(piece, position, king_pos, board):
 
     for dr, dc in directions[piece]:
         r, c = position
-        if piece == 'P':  # Pawn โจมตีได้แค่ 1 ช่อง
+        if piece == 'P':  
             r += dr
             c += dc
             if (r, c) == king_pos:
                 return True
             continue
 
-        while 0 <= r < len(board) and 0 <= c < len(board[r]):  # เดินไปเรื่อย ๆ ตามทิศทาง
+        while 0 <= r < len(board) and 0 <= c < len(board[r]):  
             r += dr
             c += dc
             if (r, c) == king_pos:
@@ -47,13 +47,13 @@ def checkmate(board):
             break
 
     if not king_pos:
-        return "Fail"  # ไม่มี King บนกระดาน
+        return "Fail"  
 
-    # ตรวจสอบตัวหมากทั้งหมดบนกระดาน
+    
     for i, row in enumerate(board):
         for j, cell in enumerate(row):
-            if cell in "PBRQ":  # ตัวหมากที่สามารถโจมตีได้
+            if cell in "PBRQ":  
                 if can_attack(cell, (i, j), king_pos, board):
-                    return "Success"  # พบการโจมตีแล้ว
+                    return "Success"  
 
-    return "Fail"  # ไม่มีตัวหมากใดโจมตี King ได้
+    return "Fail"  
